@@ -69,11 +69,17 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-    <div class="row">
-      <%= yield %>
+    <div class="container" id="wrap">
+      <% flash.each do |type, msg| %>
+        <div class='alert alert-success'>
+          <%= msg %>
+        </div>
+      <% end %>
+      <div class="row">
+        <%= yield %>
+      </div>
     </div>
-    <footer>
+    <footer class="footer">
       <div class="container">
       <div class="col-12 mt-4 pt-2 mb-2 px-2 g-0 ">
         <div class="col-2 mx-auto">
@@ -82,7 +88,7 @@
           </div>
         </div>
         <div class="row justify-content-center">
-        <%= @github_data[:contributors_commits_and_link].each do |contributor| %>
+        <% @github_data['contributors_commits_and_link'].each do |contributor| %>
           <div class="col-6 col-sm-6 col-md-4 col-lg-3 mt-4 mb-4 text-center">
             <div class="d-block">
               <a href="<%=contributor[1][1]%>" style="color: rgb(240, 242, 245)">
@@ -104,8 +110,8 @@
             </div>
           </div>
         <% end %>
-        <div class="col-6">
-          <p style="color: rgb(240, 242, 245)">Number of PRs: <%= @github_data[:repo_pr_count] %></p>
+        <div class="col-6 align-center">
+          <p style="color: rgb(240, 242, 245)">Number of PRs: <%= @github_data['repo_pr_count'] %></p>
         </div>
         </div>
       </div>
@@ -119,6 +125,6 @@
   function merchant_id_input() {
     merch_id = document.getElementById("merch_id").value;
     document.getElementById('invoices').setAttribute('href', '/merchants/'+merch_id+'/invoices');
-    document.getElementById('items').setAttribute('href', '/merchants/'+merch_id+'/invoices');
+    document.getElementById('items').setAttribute('href', '/merchants/'+merch_id+'/items');
   }
 </script>

@@ -1,6 +1,6 @@
 <%= link_to 'Create New Merchant', new_admin_merchant_path %>
 
-<section id='enabled-merchants'>
+<section id='enabled-merchants' class="col-6">
   <h1>Enabled Merchants</h1>
   <% @merchants.enabled_merchants.each do |merchant| %>
     <section id='merchant-<%= merchant.id %>'>
@@ -13,8 +13,20 @@
     </section>
   <% end %>
 </section>
-
-<section id='disabled-merchants'>
+<section id='top-five-merchants' class="col-6">
+  <h1>Top Five Merchants by Revenue</h1>
+  <ol>
+    <% @merchants.top_five_merchants_by_revenue.each do |merchant| %>
+      <section id='top-merchant-<%= merchant.id %>'>
+        <li>
+          <%= link_to merchant.name, admin_merchant_path(merchant) %> - <%= number_to_currency(merchant.revenue / 100.00) %> in sales<br>
+          Top selling date for <%= merchant.name %> was <%= merchant.top_revenue_day %>
+        </li>
+      </section>
+    <% end %>
+  </ol>
+</section>
+<section id='disabled-merchants' class="col-6">
   <h1>Disabled Merchants</h1>
   <% @merchants.disabled_merchants.each do |merchant| %>
     <section id='merchant-<%= merchant.id %>'>
@@ -28,16 +40,3 @@
   <% end %>
 </section>
 
-<section id='top-five-merchants'>
-  <h1>Top Five Merchants by Revenue</h1>
-  <ol>
-    <% @merchants.top_five_merchants_by_revenue.each do |merchant| %>
-      <section id='top-merchant-<%= merchant.id %>'>
-        <li>
-          <%= link_to merchant.name, admin_merchant_path(merchant) %> - <%= number_to_currency(merchant.revenue / 100.00) %> in sales<br>
-          Top selling date for <%= merchant.name %> was <%= merchant.top_revenue_day %>
-        </li>
-      </section>
-    <% end %>
-  </ol>
-</section>

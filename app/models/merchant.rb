@@ -40,7 +40,7 @@ class Merchant < ApplicationRecord
   end
 
   def invoice_items_to_ship
-    invoice_items.where(invoice_items: { status: :shipped })
+    invoice_items.where.not(invoice_items: { status: :shipped })
   end
 
   def enabled?

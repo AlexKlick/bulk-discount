@@ -16,18 +16,17 @@
 
 footer {
   background-color: rgb(38, 38, 38);
+  width: 100%;
   position: absolute;
-  left: 0;
-  right: 0;
-  height: [footer-height];
+  bottom: 0;
 }
 
-html,
 body {
-  height: 100%;
-  width: 100%;
   min-height: 100vh;
-  overflow: auto;
   position: relative;
-  padding-bottom: [footer-height];
+  padding-bottom: 25px;
+}
+
+div#wrap {
+  padding-bottom: 300px;
 }
