@@ -4,6 +4,12 @@
 
 "Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
 
+## Collaborators
+- [Kim Abcouwer](https://github.com/kabcouwer)
+- [Scott Borecki](https://github.com/Scott-Borecki)
+- [Caroline Tan](https://github.com/carolinectan/carolinectan)
+- [Alex Click](https://github.com/AlexKlick)
+
 ## Learning Goals
 - Practice designing a normalized database schema and defining model relationships
 - Utilize advanced routing techniques including namespacing to organize and group like functionality together.
@@ -29,6 +35,10 @@ This project requires Ruby 2.7.2.
     * `rails db:create`
 * Run the test suite with `bundle exec rspec`.
 * Run your development server with `rails s` to see the app in action.
+
+## Database Schema
+
+![database_planning](https://user-images.githubusercontent.com/80797707/128401167-3617bc26-571f-4e13-8404-233e8639df8a.png)
 
 ## Phases
 
