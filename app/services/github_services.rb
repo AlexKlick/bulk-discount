@@ -1,22 +1,22 @@
 class GithubServices
   def self.get_repo_name
-    response = Faraday.get 'https://api.github.com/repos/scott-borecki/little-esty-shop'
+    response = Faraday.get 'https://api.github.com/repos/alexklick/bulk-discount'
     repo = response.body
   end
 
   def self.get_contributors
-    response = Faraday.get 'https://api.github.com/repos/scott-borecki/little-esty-shop/contributors'
+    response = Faraday.get 'https://api.github.com/repos/alexklick/bulk-discount/contributors'
     response = response.body
     JSON.parse(response)
   end
 
   def self.get_commits
-    response = Faraday.get 'https://api.github.com/repos/scott-borecki/little-esty-shop/commits'
+    response = Faraday.get 'https://api.github.com/repos/alexklick/bulk-discount/commits'
     commits = response.body
   end
 
   def self.get_pulls
-    response = Faraday.get 'https://api.github.com/repos/scott-borecki/little-esty-shop/pulls?state=all'
+    response = Faraday.get 'https://api.github.com/repos/alexklick/bulk-discount/pulls?state=all'
     response.body
   end
 end

@@ -82,4 +82,12 @@ RSpec.describe 'Admin invoice Show page' do
     end
     expect(first('.status').text).to eq 'shipped'
   end
+
+  #   As an admin
+  # When I visit an admin invoice show page
+  # Then I see the total revenue from this invoice (not including discounts)
+  # And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
+  it 'has the discounted revenue for the invoice' do
+    binding.pry
+  end
 end
