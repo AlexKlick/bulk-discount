@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 2021_08_08_200622) do
   create_table "discounts", force: :cascade do |t|
     t.float "percent_off"
     t.integer "quantity"
+    t.bigint "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["merchant_id"], name: "index_discounts_on_merchant_id"
   end
 
   create_table "invoice_items", force: :cascade do |t|
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_200622) do
 
   add_foreign_key "discount_inventories", "discounts"
   add_foreign_key "discount_inventories", "invoice_items"
+  add_foreign_key "discounts", "merchants"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"
   add_foreign_key "invoices", "customers"

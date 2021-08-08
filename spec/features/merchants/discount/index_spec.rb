@@ -6,9 +6,9 @@ RSpec.describe 'merchant discount index page' do
     Customer.destroy_all
     TestData.create_all_data
     @merchant = Merchant.first
-    @discount1 = Discount.create(percent_off:10 ,quantity:5 , merchant_id: @merchant)
-    @discount2 = Discount.create(percent_off:20 ,quantity:10 , merchant_id: @merchant)
-    @discount3 = Discount.create(percent_off:30 ,quantity:8 , merchant_id: @merchant)
+    @discount1 = @merchant.discounts.create(percent_off:10 ,quantity:5 )
+    @discount2 = @merchant.discounts.create(percent_off:20 ,quantity:10 )
+    @discount3 = @merchant.discounts.create(percent_off:30 ,quantity:8 )
     visit "/merchants/#{@merchant.id}/discounts"
   end
 
