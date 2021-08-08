@@ -26,9 +26,12 @@ RSpec.describe 'merchant discount index page' do
   end
 
   it 'has a link to each discounts show page' do
-    expect(page).to have_link("SAVE#{@discount1.percent_off}ON#{@discount1.quantity}")
-    expect(page).to have_link("SAVE#{@discount2.percent_off}ON#{@discount2.quantity}")
-    expect(page).to have_link("SAVE#{@discount3.percent_off}ON#{@discount3.quantity}")
+
+    expect(page).to have_link("SAVE#{@discount1.percent_off.to_i}ON#{@discount1.quantity}")
+    expect(page).to have_link("SAVE#{@discount2.percent_off.to_i}ON#{@discount2.quantity}")
+    expect(page).to have_link("SAVE#{@discount3.percent_off.to_i}ON#{@discount3.quantity}")
+    click_on("SAVE#{@discount1.percent_off.to_i}ON#{@discount1.quantity}")
+    expect(current_path).to eq("/merchants/#{@merchant.id}/discounts/#{@discount1.id}")
   end
 
   #   When I visit the discounts index page

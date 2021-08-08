@@ -1,4 +1,5 @@
 <% @discounts.each do |discount| %>
+  <%= link_to "SAVE#{discount.percent_off.to_i}ON#{discount.quantity}", merchant_discount_path(discount.merchant_id, discount.id) %>
   <%= discount.quantity %>
   <%= discount.percent_off %>
 <% end %>
