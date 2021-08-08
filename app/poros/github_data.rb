@@ -34,7 +34,6 @@ class GithubData
   end
 
   def self.repo_hashed_data
-    binding.pry
     hash = {}
     hash['repo_name'] = repo_name
     hash['contributors_commits_and_link'] = repo_commits_and_link

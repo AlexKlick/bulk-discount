@@ -52,6 +52,11 @@ RSpec.describe 'merchant dashboard index page' do
     end
   end
 
+  it 'has a link to the discount index page' do
+    click_link("discounts")
+    expect(current_path).to eq("/merchants/#{merchant1.id}/discounts")
+  end
+
   describe 'Merchant Dashboard Items Ready to Ship' do
     it 'displays items ready to ship' do
       visit("/merchants/#{merchant1.id}/dashboard")
