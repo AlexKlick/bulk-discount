@@ -42,8 +42,9 @@ RSpec.describe 'merchant discount index page' do
   describe 'Upcoming Holidays' do
     it 'has the names and dates of the next 3 US holidays' do
       within "#upcoming_holidays" do
-        
-        expect(page).to have_content()
+        HolidayDates.upcoming_dates.each do |holiday|
+          expect(page).to have_content(holiday[:localName] + '- ' + DateTime.parse(holiday[:date]).strftime('%a %B %d %Y'))
+        end
       end
     end
   end
@@ -76,7 +77,7 @@ RSpec.describe 'merchant discount index page' do
   # And I no longer see the discount listed
   it 'can delete a discount and remove it from merchants discounts' do
     within("#discount#{@discount1.id}") do
-      click_link("delete discount")
+      click_on("delete discount")
     end
     expect(current_path).to eq("/merchants/#{@merchant.id}/discounts")
     expect(page).to_not have_content(@discount1.percent_off)

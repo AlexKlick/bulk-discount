@@ -18,9 +18,18 @@
         </td>
         <td><%= discount.percent_off %></td>
         <td><%= discount.quantity %></td>
-        <td><%= button_to "delete", [discount.merchant, discount], method: :delete, id:"delete-#{discount.id}", class: "btn btn-primary"%></td>
+        <td><%= button_to "delete discount", [discount.merchant, discount], method: :delete, id:"delete-#{discount.id}", class: "btn btn-primary"%></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+<section class="col-4" id="upcoming_holidays">
+  <h3>Upcoming Holidays</h3>
+  <% HolidayDates.upcoming_dates.each do |holiday| %>
+  <p>
+    <%= holiday[:localName] + '- ' + DateTime.parse(holiday[:date]).strftime('%a
+    %B %d %Y') %>
+  </p>
+  <% end %>
+</section>
