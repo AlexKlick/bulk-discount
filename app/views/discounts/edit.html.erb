@@ -1,0 +1,8 @@
+<div class="col-4">
+  <h5>Edit Discount</h5>
+  <%= bootstrap_form_with(model: [@discount.merchant, @discount], local: true)  do |form| %>
+    <%= form.number_field :percent_off,label:"Percentage Off", min:0, required: true %>
+    <%= form.number_field :quantity, label:"Quantity Threshold", min:0, required: true %>
+    <%= form.submit 'update discount' %>
+  <% end %>
+</div>

@@ -75,7 +75,7 @@ RSpec.describe 'merchant discount index page' do
   # Then I am redirected back to the bulk discounts index page
   # And I no longer see the discount listed
   it 'can delete a discount and remove it from merchants discounts' do
-    within("##{@discount1.id}") do
+    within("#discount#{@discount1.id}") do
       click_link("delete discount")
     end
     expect(current_path).to eq("/merchants/#{@merchant.id}/discounts")

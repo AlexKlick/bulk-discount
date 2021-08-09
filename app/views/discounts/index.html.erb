@@ -1,8 +1,26 @@
 <div class="nav">
-  <%=link_to "create discount", new_merchant_discount_path(@merchant) %>
+  <%=link_to "create discount", new_merchant_discount_path(@merchant), class: "nav-link"%>
 </div>
-<% @merchant.discounts.each do |discount| %>
-  <%= link_to "SAVE#{discount.percent_off.to_i}ON#{discount.quantity}", merchant_discount_path(discount.merchant_id, discount.id) %>
-  <%= discount.quantity %>
-  <%= discount.percent_off %>
-<% end %>
+<div class="col-6">
+  <h3>Current Discounts</h3>
+  <table class="table">
+    <tr>
+      <th>name</th>
+      <th>discount</th>
+      <th>quantity</th>
+      <th>delete</th>
+    </tr>
+    <tbody>
+      <% @merchant.discounts.each do |discount| %>
+      <tr id="discount<%=discount.id%>">
+        <td>
+          <%= link_to "SAVE#{discount.percent_off.to_i}ON#{discount.quantity}", merchant_discount_path(discount.merchant_id, discount.id) %>
+        </td>
+        <td><%= discount.percent_off %></td>
+        <td><%= discount.quantity %></td>
+        <td><%= button_to "delete", [discount.merchant, discount], method: :delete, id:"delete-#{discount.id}", class: "btn btn-primary"%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,2 +1,8 @@
-<%= @discount.quantity %>
-<%= @discount.percent_off %>
+<div class="col-4">
+  <h5>
+    Discount: <%= "SAVE#{@discount.percent_off.to_i}ON#{@discount.quantity}"%>
+  </h5>
+  <h6>Percent Discount: <%= @discount.percent_off.to_i %></h6>
+  <h6>Quantity Threshold: <%= @discount.quantity %></h6>
+  <%= link_to "edit discount", edit_merchant_discount_path(merchant_id: @discount.merchant_id)  %>
+</div>
