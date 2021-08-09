@@ -41,7 +41,7 @@ RSpec.describe 'merchant discount index page' do
   # Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
   describe 'Upcoming Holidays' do
     it 'has the names and dates of the next 3 US holidays' do
-      within "#upcoming holidays" do
+      within "#upcoming_holidays" do
         
         expect(page).to have_content()
       end

@@ -1,0 +1,8 @@
+<div class="col-4">
+  <h5>Add a new Discount for you goods</h5>
+  <%= bootstrap_form_tag url: "/merchants/#{@merchant.id}/discounts", method: :POST do |form| %>
+    <%= form.number_field :percent_off,label:"Percentage Off", min:0, required: true %>
+    <%= form.number_field :quantity, label:"Quantity Threshold", min:0, required: true %>
+    <%= form.submit 'create discount' %>
+  <% end %>
+</div>

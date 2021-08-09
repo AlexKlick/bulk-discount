@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :invoices, only: [:index, :show]
     resources :invoice_items, only: [:update]
     resources :items, exclude: [:destroy]
-    resources :discounts, only: [:index, :show]
+    resources :discounts
   end
 
   resources :admin, only: [:index]
