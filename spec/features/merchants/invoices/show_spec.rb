@@ -38,13 +38,11 @@ RSpec.describe 'merchant invoices show page' do
     # - Invoice status
     # - Invoice created_at date in the format "Monday, July 18, 2019"
     # - Customer first and last name
-
-    expect(page).to have_content('Little Esty Shop')
     expect(page).to have_content(@merchant1.name)
-    expect(page).to have_content("Invoice ##{@invoice1.id}")
+    expect(page).to have_content("Invoice # #{@invoice1.id}")
     # do we need to change lower case 'in progress' to 'In Progress' here?
     expect(page).to have_content("Status: #{@invoice1.status.humanize}")
-    expect(page).to have_content("Created on: #{@invoice1.created_at.strftime('%A, %B %-d, %Y')}")
+    expect(page).to have_content("Ordered: #{@invoice1.created_at.strftime('%A, %B %-d, %Y')}")
     expect(page).to have_content('Customer:')
     expect(page).to have_content("#{@customer1.first_name} #{@customer1.last_name}")
   end
