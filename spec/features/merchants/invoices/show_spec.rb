@@ -125,9 +125,10 @@ RSpec.describe 'merchant invoices show page' do
   # And I see the total discounted revenue for my merchant from this invoice which includes 
   # bulk discounts in the calculation
   it 'has the calculated discounted revenue for the invoice' do
-    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1)
-    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1)
-    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2)
+    @discount1 = Discount.create!(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1.id)
+    @discount2 = Discount.create!(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1.id)
+    @discount3 = Discount.create!(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2.id)
+    visit("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
     expect(page).to have_content("discounted revenue: $116")
   end
 
@@ -135,9 +136,10 @@ RSpec.describe 'merchant invoices show page' do
   # When I visit my merchant invoice show page
   # Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)
   it 'has a link to the applied discounts show page(s)' do
-    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1)
-    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1)
-    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2)
+    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1.id)
+    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1.id)
+    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2.id)
+    visit("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
     expect(page).to have_link("SAVE20ON10")
     expect(page).to have_link("SAVE10ON2")
     click_on("SAVE10ON2")

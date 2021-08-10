@@ -7,4 +7,8 @@ class Discount < ApplicationRecord
   validates :quantity, presence: true, numericality: true
   validates :percent_off, presence: true, numericality: true
   validates :merchant_id, presence: true
+
+  def discount_code
+    "SAVE#{percent_off.to_i}ON#{quantity}"
+  end
 end

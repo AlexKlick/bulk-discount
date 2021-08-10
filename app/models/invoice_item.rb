@@ -4,8 +4,8 @@ class InvoiceItem < ApplicationRecord
   belongs_to :invoice
   belongs_to :item
 
-  has_many :discount_inventories
-  has_many :discounts, through: :discount_inventory
+  has_one :discount_inventory
+  has_one :discount, through: :discount_inventory
 
   validates :quantity, presence: true, numericality: true
   validates :unit_price, presence: true, numericality: true

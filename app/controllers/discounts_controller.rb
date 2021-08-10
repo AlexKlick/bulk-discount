@@ -34,6 +34,12 @@ class DiscountsController < ApplicationController
   private
 
   def discount_params
-    params.permit(:merchant_id, :id, :percent_off, :quantity)
+    if params[:discount]
+      hash = {:merchant_id => params[:merchant_id], :id => params[:id]}
+      params[:discount] = params[:discount].merge(hash)
+      params.require(:discount).permit(:merchant_id, :id, :percent_off, :quantity)
+    else
+      params.permit(:merchant_id, :id, :percent_off, :quantity)
+    end
   end
 end

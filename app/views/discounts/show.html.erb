@@ -1,8 +1,30 @@
-<div class="col-4">
+<div class="col-10 text-center">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <%= link_to 'discounts', merchant_discounts_path(@discount.merchant),
+      class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Items', merchant_items_path(@discount.merchant), class:
+      "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Invoices', merchant_invoices_path(@discount.merchant),
+      class: "nav-link" %>
+    </li>
+    <li>
+      <%=link_to "create discount",
+      new_merchant_discount_path(@discount.merchant), class: "nav-link"%>
+    </li>
+  </ul>
+  <br />
+</div>
+<div class="col-4 text-center">
   <h5>
     Discount: <%= "SAVE#{@discount.percent_off.to_i}ON#{@discount.quantity}"%>
   </h5>
   <h6>Percent Discount: <%= @discount.percent_off.to_i %></h6>
   <h6>Quantity Threshold: <%= @discount.quantity %></h6>
-  <%= link_to "edit discount", edit_merchant_discount_path(merchant_id: @discount.merchant_id)  %>
+  <%= link_to "edit discount", edit_merchant_discount_path(merchant_id:
+  @discount.merchant_id) %>
 </div>

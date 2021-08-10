@@ -1,5 +1,22 @@
-<div class="nav">
-  <%=link_to "create discount", new_merchant_discount_path(@merchant), class: "nav-link"%>
+<div class="col-10 text-center">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <%= link_to 'discounts', merchant_discounts_path(@merchant), class:
+      "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Items', merchant_items_path(@merchant), class: "nav-link"
+      %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), class:
+      "nav-link" %>
+    </li>
+    <li>
+      <%=link_to "create discount", new_merchant_discount_path(@merchant), class: "nav-link"%>
+    </li>
+  </ul>  
+  <br />
 </div>
 <div class="col-6">
   <h3>Current Discounts</h3>
