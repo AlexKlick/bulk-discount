@@ -100,20 +100,6 @@ RSpec.describe 'merchant invoices show page' do
 
     within("#invoice_item_#{@invoice_item1.id}") do
       expect(page).to have_content(@invoice_item1.status)
-      expect(page).to have_selector('#invoice_item_status')
-      page.select('shipped', from: :invoice_item_status)
-      click_button('Update Item Status')
-      expect(current_path).to eq("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
-      expect(page).to have_content(@invoice_item1.status)
-    end
-
-    within("#invoice_item_#{@invoice_item2.id}") do
-      expect(page).to have_content(@invoice_item2.status)
-      expect(page).to have_selector('#invoice_item_status')
-      page.select('shipped', from: :invoice_item_status)
-      click_button('Update Item Status')
-      expect(current_path).to eq("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
-      expect(page).to have_content(@invoice_item2.status)
     end
   end
 
@@ -141,6 +127,6 @@ RSpec.describe 'merchant invoices show page' do
     expect(page).to have_link("SAVE20ON10")
     expect(page).to have_link("SAVE10ON2")
     click_on("SAVE10ON2")
-    expect(current_path).to eq("merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
   end
 end
