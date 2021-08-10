@@ -17,6 +17,8 @@ RSpec.describe 'merchants discount edit page' do
   # Then I am redirected to the bulk discount's show page
   # And I see that the discount's attributes have been updated
   it 'allows user to edit the discount, upon submission, returns to show page where attributes are updated' do
+    expect(find('#discount_percent_off').value).to eq("10.0")
+    expect(find('#discount_quantity').value).to eq("5")
     fill_in 'discount_percent_off', with: '100'
     fill_in 'discount_quantity', with: '26'
     click_on("commit")
