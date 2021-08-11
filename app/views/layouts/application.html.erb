@@ -78,8 +78,8 @@
     </nav>
     <div class="container" id="wrap">
       <% flash.each do |type, msg| %>
-        <div class='alert alert-success'>
-          <%= msg %>
+        <div class='alert <%=msg[1]%>'>
+          <%= msg[0] %>
         </div>
       <% end %>
       <div class="row justify-content-center">

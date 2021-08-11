@@ -58,7 +58,6 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <% @merchant.invoice_items_for_invoice(@invoice.id).statuses.keys().each do |status| %>
                     <%= link_to status, "/invoice_items/#{item.id}/#{status}", method: :patch, params: {status: status}, :class=>"dropdown-item"%>
-                    
                   <% end %>
                 </div>
               </div>
