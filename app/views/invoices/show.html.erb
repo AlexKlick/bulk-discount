@@ -1,3 +1,20 @@
+<div class="col-10 text-center">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <%= link_to 'discounts', merchant_discounts_path(@merchant), class:
+      "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Items', merchant_items_path(@merchant), class: "nav-link"
+      %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), class:
+      "nav-link" %>
+    </li>
+  </ul>  
+  <br />
+</div>
 <div class="col-12 rounded mt-4 ms-3" style="border: 2px red;">
   <div class="card " style="background-color: rgb(191, 202, 209);min-width: 580px">
     <div class="card-header" style="background-color: rgb(134, 153, 165)">
