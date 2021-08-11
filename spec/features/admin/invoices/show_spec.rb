@@ -87,10 +87,12 @@ RSpec.describe 'Admin invoice Show page' do
   # Then I see the total revenue from this invoice (not including discounts)
   # And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
   it 'has the discounted revenue for the invoice' do
-    visit "/admin/invoices/#{@invoice.id}"
+    @merchant = @invoice.merchants.first
     @discount1 = @merchant.discounts.create(percent_off:10 ,quantity:5 )
     @discount2 = @merchant.discounts.create(percent_off:20 ,quantity:10 )
     @discount3 = @merchant.discounts.create(percent_off:30 ,quantity:8 )
-    expect(page).to have_content("discounted revenue: #{(8363 * 11 * 0.7) + 1177 * 9 * 0.7 + 4960 * 15 * 0.7}")
+    
+    visit "/admin/invoices/#{@invoice.id}"
+    expect(page).to have_content("discounted revenue: $1,238.90")
   end
 end
