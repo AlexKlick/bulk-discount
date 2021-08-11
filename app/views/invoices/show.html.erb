@@ -15,7 +15,7 @@
   </ul>  
   <br />
 </div>
-<div class="col-12 rounded mt-4 ms-3" style="border: 2px red;">
+<div class="col-8 rounded mt-4 ms-3" style="border: 2px red;">
   <div class="card " style="background-color: rgb(191, 202, 209);min-width: 580px">
     <div class="card-header" style="background-color: rgb(134, 153, 165)">
       <h3 class="card-title">Invoice # <%= @invoice.id %></h3>
@@ -52,12 +52,12 @@
             <td><%= item.quantity %></td>
             <td class="status" id="invoice_item_status">       
               <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle float-left" type="button" data-toggle="dropdown" id="f<%=item.id%>">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="f<%=item.id%>">
                   <%= item.status %>
                 <span class="caret"></span></button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <% @merchant.invoice_items_for_invoice(@invoice.id).statuses.keys().each do |status| %>
-                    <%= link_to status, "/invoice_items/#{item.id}/#{status}", method: :patch, params: {status: status}, :class=>"dropdown-item"%>
+                  <% @invoice.invoice_items.statuses.keys().each do |status| %>
+                  <%= button_to status, merchant_invoice_item_path(item.item.merchant.id, item.id, invoice_item: {status: status}, invoice_id: @invoice.id), method: :patch, :class=>"dropdown-item"%>
                   <% end %>
                 </div>
               </div>
