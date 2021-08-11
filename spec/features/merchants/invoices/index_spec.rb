@@ -37,8 +37,6 @@ RSpec.describe 'merchant invoices index page' do
     # Then I see all of the invoices that include at least one of my merchant's items
     # And for each invoice I see its id
     # And each id links to the merchant invoice show page
-    
-    expect(page).to have_content('Little Esty Shop')
     expect(page).to have_content(@merchant1.name)
     expect(page).to have_content('My Invoices')
     expect(page).to have_content("Invoice ##{@invoice1.id}")

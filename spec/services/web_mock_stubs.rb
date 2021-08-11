@@ -86,4 +86,33 @@ module WebmockStubs
   def self.mock_pulls
     {'pull'=> 'mock'}.to_json
   end
+
+  def self.mock_holidays
+    [{:date=>"2021-09-06",
+  :localName=>"Labor Day",
+  :name=>"Labour Day",
+  :countryCode=>"US",
+  :fixed=>false,
+  :global=>true,
+  :counties=>nil,
+  :launchYear=>nil,
+  :types=>["Public"]},
+ {:date=>"2021-10-11",
+  :localName=>"Columbus Day",
+  :name=>"Columbus Day",
+  :countryCode=>"US",
+  :fixed=>false,
+  :global=>false,
+  :launchYear=>nil,
+  :types=>["Public"]},
+ {:date=>"2021-11-11",
+  :localName=>"Veterans Day",
+  :name=>"Veterans Day",
+  :countryCode=>"US",
+  :fixed=>false,
+  :global=>true,
+  :counties=>nil,
+  :launchYear=>nil,
+  :types=>["Public"]}].to_json
+  end
 end

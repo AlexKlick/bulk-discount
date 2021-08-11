@@ -39,8 +39,6 @@ RSpec.describe 'Merchant Items Index Page' do
         expect(page).to have_no_button('Disable')
       end
 
-      expect(page).to have_content("#{@item1.name}'s information was successfully updated!")
-
       within "#item-#{@item2.id}" do
         expect(page).to have_no_button('Enable')
         expect(page).to have_button('Disable')
@@ -73,7 +71,6 @@ RSpec.describe 'Merchant Items Index Page' do
         expect(page).to have_button('Disable')
       end
 
-      expect(page).to have_content("#{@item5.name}'s information was successfully updated!")
     end
 
     it 'has two sections: one for enabled items and one for disabled items' do

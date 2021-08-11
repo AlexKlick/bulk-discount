@@ -38,13 +38,11 @@ RSpec.describe 'merchant invoices show page' do
     # - Invoice status
     # - Invoice created_at date in the format "Monday, July 18, 2019"
     # - Customer first and last name
-
-    expect(page).to have_content('Little Esty Shop')
     expect(page).to have_content(@merchant1.name)
-    expect(page).to have_content("Invoice ##{@invoice1.id}")
+    expect(page).to have_content("Invoice # #{@invoice1.id}")
     # do we need to change lower case 'in progress' to 'In Progress' here?
     expect(page).to have_content("Status: #{@invoice1.status.humanize}")
-    expect(page).to have_content("Created on: #{@invoice1.created_at.strftime('%A, %B %-d, %Y')}")
+    expect(page).to have_content("Ordered: #{@invoice1.created_at.strftime('%A, %B %-d, %Y')}")
     expect(page).to have_content('Customer:')
     expect(page).to have_content("#{@customer1.first_name} #{@customer1.last_name}")
   end
@@ -102,20 +100,6 @@ RSpec.describe 'merchant invoices show page' do
 
     within("#invoice_item_#{@invoice_item1.id}") do
       expect(page).to have_content(@invoice_item1.status)
-      expect(page).to have_selector('#invoice_item_status')
-      page.select('shipped', from: :invoice_item_status)
-      click_button('Update Item Status')
-      expect(current_path).to eq("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
-      expect(page).to have_content(@invoice_item1.status)
-    end
-
-    within("#invoice_item_#{@invoice_item2.id}") do
-      expect(page).to have_content(@invoice_item2.status)
-      expect(page).to have_selector('#invoice_item_status')
-      page.select('shipped', from: :invoice_item_status)
-      click_button('Update Item Status')
-      expect(current_path).to eq("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
-      expect(page).to have_content(@invoice_item2.status)
     end
   end
 
@@ -125,9 +109,10 @@ RSpec.describe 'merchant invoices show page' do
   # And I see the total discounted revenue for my merchant from this invoice which includes 
   # bulk discounts in the calculation
   it 'has the calculated discounted revenue for the invoice' do
-    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1)
-    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1)
-    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2)
+    @discount1 = Discount.create!(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1.id)
+    @discount2 = Discount.create!(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1.id)
+    @discount3 = Discount.create!(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2.id)
+    visit("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
     expect(page).to have_content("discounted revenue: $116")
   end
 
@@ -135,12 +120,13 @@ RSpec.describe 'merchant invoices show page' do
   # When I visit my merchant invoice show page
   # Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)
   it 'has a link to the applied discounts show page(s)' do
-    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1)
-    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1)
-    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2)
+    @discount1 = Discount.create(percent_off: 10 ,quantity: 2 ,merchant_id: @merchant1.id)
+    @discount2 = Discount.create(percent_off: 20 ,quantity: 10 ,merchant_id: @merchant1.id)
+    @discount3 = Discount.create(percent_off: 30 ,quantity: 8 ,merchant_id: @merchant2.id)
+    visit("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
     expect(page).to have_link("SAVE20ON10")
     expect(page).to have_link("SAVE10ON2")
     click_on("SAVE10ON2")
-    expect(current_path).to eq("merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts/#{@discount1.id}")
   end
 end

@@ -84,5 +84,18 @@ RSpec.describe Invoice, type: :model do
         expect(@invoice1.invoice_total_revenue).to eq(3000)
       end
     end
+
+    describe '#create_invoice_discounts' do
+      xit 'creates the discount_inventories for the invoice with the best discounts selected' do
+        
+
+      end
+    end
+
+    describe '#discounted_revenue' do
+      xit 'returns the correct revenue in cents after discounts are applied' do
+        
+      end
+    end
   end
 end

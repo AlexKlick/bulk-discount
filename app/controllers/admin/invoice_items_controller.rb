@@ -1,5 +1,6 @@
 class Admin::InvoiceItemsController < ApplicationController
   def update
+    binding.pry
     InvoiceItem.find(invoice_item_params[:id])
                .update(invoice_item_params)
     redirect_to admin_invoice_path(params[:invoice_id])

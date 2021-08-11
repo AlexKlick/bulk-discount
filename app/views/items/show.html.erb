@@ -1,7 +1,39 @@
-<h1><%= @item.name %></h1>
+<div class="col-10 text-center">
+  <ul class="nav justify-content-center" style="background-color: rgb(50, 53, 54)">
+    <li class="nav-item">
+      <%= link_to 'discounts', merchant_discounts_path(@merchant), class:
+      "nav-link",style: "color: rgb(255, 255, 255)" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Items', merchant_items_path(@merchant), class: "nav-link", style: "color: rgb(255, 255, 255)"
+      %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), class:
+      "nav-link", style: "color: rgb(255, 255, 255)" %>
+    </li>
+  </ul>  
+  <br />
+</div>
 
-
-<p>Description: <%= @item.description %></p>
-<p>Price: <%= number_to_currency(@item.unit_price / 100.00) %></p>
-<br>
-<p><%= link_to "Update Item Information", edit_merchant_item_path(@merchant, @item) %></p>
+<div class="col-6 rounded mt-4 ms-3" style="border: 2px red;">
+  <div class="card " style="background-color: rgb(191, 202, 209);min-width: 580px">
+    <div class="card-header" style="background-color: rgb(134, 153, 165)">
+      <h3 class="card-title"><%= @item.name %></h3>
+      <hr
+      class="float-left"
+      style="
+        color: rgb(105, 0, 0);
+        border: 2px solid rgb(112, 0, 0);
+        width: 50%;
+      "
+    />
+      <h4 class="blockquote">Description: <%= @item.description %></h4>
+      <h3>Price: <%= number_to_currency(@item.unit_price / 100.00) %></h3>
+      <br>
+    </div>
+    <div class="card-body" style="background-color: rgb(217, 221, 222)">
+      <%= link_to "Update Item Information", edit_merchant_item_path(@merchant, @item), class: "nav-link" %>
+    </div>
+  </div>
+</div>

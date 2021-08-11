@@ -1,8 +1,52 @@
-<div class="nav">
-  <%=link_to "create discount", new_merchant_discount_path(@merchant) %>
+<div class="col-10 text-center">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <%= link_to 'discounts', merchant_discounts_path(@merchant), class:
+      "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Items', merchant_items_path(@merchant), class: "nav-link"
+      %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), class:
+      "nav-link" %>
+    </li>
+    <li>
+      <%=link_to "create discount", new_merchant_discount_path(@merchant), class: "nav-link"%>
+    </li>
+  </ul>  
+  <br />
 </div>
-<% @merchant.discounts.each do |discount| %>
-  <%= link_to "SAVE#{discount.percent_off.to_i}ON#{discount.quantity}", merchant_discount_path(discount.merchant_id, discount.id) %>
-  <%= discount.quantity %>
-  <%= discount.percent_off %>
-<% end %>
+<div class="col-lg-6 col-md-12 text-center">
+  <h3>Current Discounts</h3>
+  <table class="table">
+    <tr>
+      <th>name</th>
+      <th>discount</th>
+      <th>quantity</th>
+      <th>delete</th>
+    </tr>
+    <tbody>
+      <% @merchant.discounts.each do |discount| %>
+      <tr id="discount<%=discount.id%>">
+        <td>
+          <%= link_to "SAVE#{discount.percent_off.to_i}ON#{discount.quantity}", merchant_discount_path(discount.merchant_id, discount.id) %>
+        </td>
+        <td><%= discount.percent_off %></td>
+        <td><%= discount.quantity %></td>
+        <td><%= button_to "delete discount", [discount.merchant, discount], method: :delete, id:"delete-#{discount.id}", class: "btn btn-primary"%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<section class="col-lg-6 col-md-12 text-center" id="upcoming_holidays">
+  <h3>Upcoming Holidays</h3>
+  <% HolidayDates.upcoming_dates.each do |holiday| %>
+  <p>
+    <%= holiday[:localName] + '- ' + DateTime.parse(holiday[:date]).strftime('%a
+    %B %d %Y') %>
+  </p>
+  <% end %>
+</section>

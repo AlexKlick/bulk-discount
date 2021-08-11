@@ -29,6 +29,8 @@ RSpec.configure do |config|
     .to_return(status: 200, body: WebmockStubs.mock_commits, headers: {})
     stub_request(:get, "https://api.github.com/repos/alexklick/bulk-discount/pulls?state=all")
     .to_return(status: 200, body: WebmockStubs.mock_pulls, headers: {})
+    stub_request(:get, "https://date.nager.at/api/v2/NextPublicHolidays/us")
+    .to_return(status: 200, body: WebmockStubs.mock_holidays, headers: {})
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

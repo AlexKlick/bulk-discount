@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
   def index
-    @merchant = Merchant.find(params[:merchant_id])
+    if Merchant.exists?(params[:merchant_id])
+      @merchant = Merchant.find(params[:merchant_id])
+    else
+      flash[:alert] = ["Merchant #{params[:merchant_id]} Does Not Exist! Please choose a merchant =< #{Merchant.count}", "alert-danger"]
+      redirect_to request.env["HTTP_REFERER"]
+    end
   end
 
   def show
@@ -20,11 +25,11 @@ class ItemsController < ApplicationController
       if item_params['enabled'] != nil
         redirect_to merchant_items_path
       else
+        flash[:notice] = ["#{item.name}'s information was successfully updated!", "alert-success"]
         redirect_to merchant_item_path
       end
-      flash[:notice] = "#{item.name}'s information was successfully updated!"
     else
-      flash[:alert] = "#{item.name}'s information was not successfully updated."
+      flash[:alert] = ["#{item.name}'s information was not successfully updated.", "alert-danger"]
     end
   end
 
